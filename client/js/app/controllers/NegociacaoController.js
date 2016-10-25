@@ -9,9 +9,12 @@ class NegociacaoController {
 
   adiciona(event) {
     event.preventDefault();
-
     let negociacao = new Negociacao(
-      new Date(this._inputData.value.replace(/-/g, ',')),
+      new Date(...this._inputData.value
+          .split('-')
+          .map(function(item, indice){
+            return item - indice % 2;
+          })),
       this._inputQtd.value,
       this._inputValor.value
     );
