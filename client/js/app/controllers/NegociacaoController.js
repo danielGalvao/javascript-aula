@@ -9,13 +9,13 @@ class NegociacaoController {
 
   adiciona(event) {
     event.preventDefault();
+    let helper = new DateHelper();
     let negociacao = new Negociacao(
-      new Date(...this._inputData.value
-          .split('-')
-          .map((item, indice) => item - indice % 2)
-      ),
+      helper.textToDate(this._inputData.value),
       this._inputQtd.value,
       this._inputValor.value
     );
+    console.log(negociacao);
+    console.log(helper.dateToText(negociacao.Data));
   }
 }
