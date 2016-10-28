@@ -5,6 +5,7 @@ class NegociacaoController {
     this._inputQtd = $('#quantidade');
     this._inputData = $('#data');
     this._inputValor = $('#valor');
+    this._listaNegociacoes = new ListaNegociacoes();
   }
 
   adiciona(event) {
@@ -14,7 +15,9 @@ class NegociacaoController {
       this._inputQtd.value,
       this._inputValor.value
     );
-    console.log(negociacao);
-    console.log(DateHelper.dateToText(negociacao.Data));
+
+    this._listaNegociacoes.adiciona(negociacao);
+
+    console.log(this._listaNegociacoes.negociacoes);
   }
 }
