@@ -17,7 +17,13 @@ class NegociacaoController {
     );
 
     this._listaNegociacoes.adiciona(negociacao);
+    this._limpaFormulario();
+  }
 
-    console.log(this._listaNegociacoes.negociacoes);
+  _limpaFormulario() {
+    this._inputQtd.value = 1;
+    this._inputData.value = '';
+    this._inputValor.value = 0.0;
+    this._inputQtd.focus();
   }
 }
