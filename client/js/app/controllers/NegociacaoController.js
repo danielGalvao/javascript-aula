@@ -10,14 +10,17 @@ class NegociacaoController {
 
   adiciona(event) {
     event.preventDefault();
-    let negociacao = new Negociacao(
+
+    this._listaNegociacoes.adiciona(this._criaNegociacao());
+    this._limpaFormulario();
+  }
+
+  _criaNegociacao() {
+    return new Negociacao(
       DateHelper.textToDate(this._inputData.value),
       this._inputQtd.value,
       this._inputValor.value
     );
-
-    this._listaNegociacoes.adiciona(negociacao);
-    this._limpaFormulario();
   }
 
   _limpaFormulario() {
