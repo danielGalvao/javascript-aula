@@ -18,7 +18,7 @@ class NegociacoesView {
         </tr>
       </thead>
       <tbody>
-        ${model.negociacoes.map(n => {
+        ${model.negociacoes.map(n =>
           return `
             <tr>
               <td>${DateHelper.dateToText(n.data)}</td>
@@ -27,7 +27,7 @@ class NegociacoesView {
               <td>${n.volume}</td>
             </tr>
           `;
-        }).join('')}
+        ).join('')}
       </tbody>
 
       <tfoot>
