@@ -19,7 +19,7 @@ class NegociacaoController {
     this._negociacoesView.update(this._listaNegociacoes);
 
     this._mensagem.texto = 'Negociações apagadas com sucesso';
-    this._mensagemViews.update(this._mensagem);
+    this._mensagemView.update(this._mensagem);
   }
 
   adiciona(event) {
