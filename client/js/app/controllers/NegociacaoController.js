@@ -18,7 +18,7 @@ class NegociacaoController {
     this._listaNegociacoes.esvazia();
     this._negociacoesView.update(this._listaNegociacoes);
 
-    this._mensagem.texto = 'Negociações apagadas com sucesso';
+    this._mensagem.texto = 'Negociações removidas da tabela';
     this._mensagemView.update(this._mensagem);
   }
 
