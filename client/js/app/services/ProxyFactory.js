@@ -10,6 +10,11 @@ class ProxyFactory {
           }
         }
         return Reflect.get(target, prop, receiver);
+      },
+
+      set(target, prop, value, receiver) {
+          Reflect.set(target, prop, value, receiver);
+          return acao(target);
       }
     });
   }
