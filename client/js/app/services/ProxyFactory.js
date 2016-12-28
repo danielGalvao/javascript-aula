@@ -2,6 +2,7 @@ class ProxyFactory {
 
   static create(objeto, props, acao) {
     return new Proxy(objeto,{
+      
       get(target, prop, receiver) {
         if(props.includes(prop) && ProxyFactory._isFunction(target[prop])) {
           return function() {
@@ -18,6 +19,7 @@ class ProxyFactory {
       }
     });
   }
+
   static _isFunction(func) {
     return typeof(func) == typeof(Function);
   }
