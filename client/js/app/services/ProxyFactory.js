@@ -1,9 +1,9 @@
 class ProxyFactory {
 
   static create(objeto, props, acao) {
-    return new Proxy(new ListaNegociacoes(),{
+    return new Proxy(objeto,{
       get(target, prop, receiver) {
-        if(props.includes(prop) && typeof(target[prop]) == typeof(Function)) {
+        if(props.includes(prop) && ProxyFactory._isFunction(target[prop])) {
           return function() {
             Reflect.apply(target[prop], target, arguments);
             return acao(target);
@@ -17,5 +17,8 @@ class ProxyFactory {
           return acao(target);
       }
     });
+  }
+  static _isFunction(func) {
+    return typeof(func) == typeof(Function);
   }
 }
