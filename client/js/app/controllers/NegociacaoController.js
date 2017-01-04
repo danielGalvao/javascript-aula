@@ -35,7 +35,11 @@ class NegociacaoController {
   importaNegociacoes(){
     let xhr =  new XMLHttpRequest();
     xhr.open('GET', 'negociacoes/semana');
-    
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState == 4 && xhr.status == 200) {
+
+      }
+    };
     xhr.send();
   }
 
