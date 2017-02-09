@@ -9,22 +9,32 @@ class ConnectionFactory {
   }
 
   static getConnection(){
-    return new Promisse((resolve, reject) => {
+    return new Promise((resolve, reject) => {
 
       let openRequest = window.indexedDB.open('aluraframe', 4);
 
       openRequest.onupgradeneeded = e => {
-
+        ConnectionFactory._createStores(e.target.result);
       };
 
       openRequest.onsuccess = e => {
-
+        resolve(e.target.result);
       };
 
       openRequest.onerror = e => {
-
+        console.log(e.target.error);
+        reject(e.target.error.name);
       };
 
     })
+  }
+
+  static _createStores(connection){
+    stores.forEach(store => {
+      if(connection.objectStoreNames.contains(store)) {
+        connection.deleteObjectStore(store);
+      }
+      connection.createObjectStore(store, {autoIncremente: true});
+    });
   }
 }
