@@ -27,9 +27,19 @@ class NegociacaoController {
 
   adiciona(event) {
     event.preventDefault();
-    this._listaNegociacoes.adiciona(this._criaNegociacao());
-    this._limpaFormulario();
-    this._mensagem.texto = 'Negociação adicionada com sucesso';
+
+    ConnectionFactory
+      .getConnection()
+      .then(connection => {
+        let negociacao = this._criaNegociacao();
+        new NegociacaoDao(connection)
+          .adiciona(negociacao)
+          .then(() => {
+            this._listaNegociacoes.adiciona(negociacao);
+            this._limpaFormulario();
+          })
+      })
+      .catch(erro => this._mensagem.texto = erro);
   }
 
   importaNegociacoes(){

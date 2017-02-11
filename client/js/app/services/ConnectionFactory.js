@@ -15,7 +15,7 @@ var ConnectionFactory = (function(){
     static getConnection(){
       return new Promise((resolve, reject) => {
 
-        let openRequest = window.indexedDB.open('aluraframe', 4);
+        let openRequest = window.indexedDB.open(dbName, version);
 
         openRequest.onupgradeneeded = e => {
           ConnectionFactory._createStores(e.target.result);
@@ -29,7 +29,7 @@ var ConnectionFactory = (function(){
               throw new Error('Não é possível fechar diretamente a conexão.')
             }
           }
-          resolve(e.target.result);
+          resolve(connection);
         };
 
         openRequest.onerror = e => {
@@ -44,7 +44,7 @@ var ConnectionFactory = (function(){
         if(connection.objectStoreNames.contains(store)) {
           connection.deleteObjectStore(store);
         }
-        connection.createObjectStore(store, {autoIncremente: true});
+        connection.createObjectStore(store, { autoIncrement: true });
       });
     }
 

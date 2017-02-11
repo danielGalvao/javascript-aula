@@ -5,10 +5,10 @@ class NegociacaoDao {
     this._store = 'negociacoes';
   }
 
-  adiciona() {
+  adiciona(negociacao) {
      return new Promise((resolve, reject) => {
          let request = this._connection
-          .transaction([this._store, 'readwrite'])
+          .transaction([this._store], "readwrite")
           .objectStore(this._store)
           .add(negociacao);
         request.onsuccess = e => {
