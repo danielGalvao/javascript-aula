@@ -21,15 +21,12 @@ class NegociacaoController {
 
     ConnectionFactory
       .getConnection()
-      .then(connection => {
-        new NegociacaoDao(connection)
-          .listaTodos()
-          .then(negociacoes => {
-            negociacoes.forEach(negociacao => {
-              this._listaNegociacoes.adiciona(negociacao);
-            })
-          });
-      })
+      .then(connection => new NegociacaoDao(connection))
+      .then(dao => dao.listaTodos())
+      .then(negociacoes =>
+        negociacoes.forEach(negociacao =>
+          this._listaNegociacoes.adiciona(negociacao)));
+
   }
 
   apaga() {

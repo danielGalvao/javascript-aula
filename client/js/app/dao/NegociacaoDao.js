@@ -45,7 +45,7 @@ class NegociacaoDao {
               atual.continue();
 
           } else {
-              console.log(negociacoes);
+              resolve(negociacoes);
           }
 
       };
